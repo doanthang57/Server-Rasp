@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title>TEST-ClIENT</title>
+        <meta name="viewport" content="width=400px" />
+        <script src="/socket.io/socket.io.js"></script>
+
+  </head>
+  <body>
+
+        <input type="button" id="btn" value="Bat den">
+        <br>
+        <script>
+          var temp;
+          var socket = io();
+          socket.on('sv2cl', function (data) {
+                    alert(data.value);
+
+                    if(data.value=='1'){
+                        temp='0';
+                        document.getElementById("btn").value = "Tat den";
+                    } else {
+                        temp='1';
+                        document.getElementById("btn").value = "Bat den";
+                    }
+                });
+
+          document.getElementById("btn").onclick = function(){
+              if(temp=='1'){
+                temp1='@O1D1L19%';
+                document.getElementById("btn").value = "TAT DEN";
+                socket.emit('cl2sv',{status: temp1});
+                temp = '0';
+              }
+              else {
+                temp1='@O1D1L29%';
+                document.getElementById("btn").value = "BAT DEN";
+                socket.emit('cl2sv',{status: temp1});
+                temp='1';
+
+              }
+          };
+          //
+
+        </script>
+  </body>
+</html>
